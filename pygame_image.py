@@ -12,6 +12,8 @@ def main():
     bg_img = pg.image.load("fig/pg_bg.jpg")
     c_img = pg.image.load("fig/3.png")
     c_img = pg.transform.flip(c_img, True, False)
+    c_img_rct = c_img.get_rect()
+    c_img_rct.center = 300,200
     tmr = 0
     bg_x = 0
     bg_y = 0
@@ -30,8 +32,19 @@ def main():
         if bg_x <= -1600:
             bg_x = 0
             bg_ax = 1600
-        pg.display.update()      
+        key_lst = pg.key.get_pressed()
+        if key_lst[pg.K_UP]:
+            c_img_rct.move_ip((0, -1))
+        if key_lst[pg.K_DOWN]:
+            c_img_rct.move_ip((0,1))
+        if key_lst[pg.K_RIGHT]:
+            c_img_rct.move_ip((1,0))
+        if key_lst[pg.K_LEFT]:
+            c_img_rct.move_ip((-1,0))
+        screen.blit(c_img,c_img_rct)
+        #bg_y = 0        
         clock.tick(200)
+        pg.display.update()
 
 
 if __name__ == "__main__":
