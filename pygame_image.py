@@ -13,14 +13,23 @@ def main():
     c_img = pg.image.load("fig/3.png")
     c_img = pg.transform.flip(c_img, True, False)
     tmr = 0
+    bg_x = 0
+    bg_y = 0
+    bg_ax = 1600
+    bg_ay = 0
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
 
-        screen.blit(bg_img, [0, 0])
-        screen.blit(c_img, [300,200])
-        pg.display.update()
-        tmr += 1        
+        screen.blit(bg_img, [bg_x, bg_y])
+        screen.blit(bg_img,[bg_ax,bg_ay])
+        tmr += 1
+        bg_x -= 1
+        bg_ax -= 1
+        if bg_x <= -1600:
+            bg_x = 0
+            bg_ax = 1600
+        pg.display.update()      
         clock.tick(200)
 
 
