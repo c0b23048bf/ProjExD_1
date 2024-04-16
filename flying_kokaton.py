@@ -13,32 +13,30 @@ def main():
     
     #背景画像とこうかとん
     bg_img = pg.image.load("fig/pg_bg.jpg")
-    c_img = pg.image.load("fig/3.png")
+    bg_img2 = pg.image.load("fig/pg_bg.jpg")
+    bg_img2 = pg.transform.flip(bg_img2, True, False)
     
     #こうかとん座標設定
+    c_img = pg.image.load("fig/3.png")
     c_img = pg.transform.flip(c_img, True, False)
     c_img_rct = c_img.get_rect()
     c_img_rct.center = 300,200
     
-    tmr,bg_x,bg_y,bg_ax,bg_ay,c_x ,c_y = 0,0,0,1600,0,0,0
+    tmr,c_x ,c_y = 0,0,0
     
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
 
         #背景画像blit
-        screen.blit(bg_img, [bg_x, bg_y])
-        screen.blit(bg_img,[bg_ax,bg_ay])
+        x = tmr%3200
+        screen.blit(bg_img, [-x, 0])
+        screen.blit(bg_img2, [-x+1600, 0])
+        screen.blit(bg_img, [-x+3200, 0])
+        screen.blit(bg_img2, [-x+4800, 0]) 
         
         tmr += 1
-        bg_x -= 1
-        bg_ax -= 1
         c_x,c_y = 0,0
-        
-        #背景ループ
-        if bg_x <= -1600:
-            bg_x = 0
-            bg_ax = 1600
         
         #こうかとんボタン操作
         key_lst = pg.key.get_pressed()
