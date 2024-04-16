@@ -26,6 +26,7 @@ def main():
         tmr += 1
         bg_x -= 1
         bg_ax -= 1
+        
         if bg_x <= -1600:
             bg_x = 0
             bg_ax = 1600
