@@ -19,6 +19,8 @@ def main():
     bg_y = 0
     bg_ax = 1600
     bg_ay = 0
+    c_x = 0
+    c_y = 0
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
@@ -28,21 +30,23 @@ def main():
         tmr += 1
         bg_x -= 1
         bg_ax -= 1
-        
+        c_x = 0
+        c_y = 0
         if bg_x <= -1600:
             bg_x = 0
             bg_ax = 1600
         key_lst = pg.key.get_pressed()
         if key_lst[pg.K_UP]:
-            c_img_rct.move_ip((0, -1))
-        if key_lst[pg.K_DOWN]:
-            c_img_rct.move_ip((0,1))
-        if key_lst[pg.K_RIGHT]:
-            c_img_rct.move_ip((2,0))
-        if key_lst[pg.K_LEFT]:
-            c_img_rct.move_ip((-1,0))
+            c_y += -1
+        elif key_lst[pg.K_DOWN]:
+            c_y += 1
+        elif key_lst[pg.K_RIGHT]:
+            c_x += 2
+        elif key_lst[pg.K_LEFT]:
+            c_x += -1
         else:
-            c_img_rct.move_ip((-1,0))
+            c_x += -1
+        c_img_rct.move_ip((c_x,c_y))
         screen.blit(c_img,c_img_rct)
         #bg_y = 0        
         clock.tick(200)
