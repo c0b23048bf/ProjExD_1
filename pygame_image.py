@@ -38,8 +38,10 @@ def main():
         if key_lst[pg.K_DOWN]:
             c_img_rct.move_ip((0,1))
         if key_lst[pg.K_RIGHT]:
-            c_img_rct.move_ip((1,0))
+            c_img_rct.move_ip((2,0))
         if key_lst[pg.K_LEFT]:
+            c_img_rct.move_ip((-1,0))
+        else:
             c_img_rct.move_ip((-1,0))
         screen.blit(c_img,c_img_rct)
         #bg_y = 0        
